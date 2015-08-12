@@ -32,12 +32,15 @@ angular.module('battlescript.auth', [])
 
   $scope.logout = function() {
     console.log('calling log out');
+    SocketHolder.socket.emit('logout');
+    // Disconnect the socket on logout
     $scope.user.username = $window.localStorage.getItem('username');
     console.log("inside log out ", $scope.user)
     Auth.signout($scope.user)
     .then(function (token){    
       console.log('inside then: im signing out') 
       $window.localStorage.removeItem('battlepro');
+      console.log('disconnecting!')
       $location.path('/signin');
     })
     .catch(function (error) {

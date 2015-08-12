@@ -13,16 +13,25 @@ module.exports = function(socket, io){
   })
 
   socket.on('disconnect', function(){
-    delete userController.currentUsers[socket.handshake.query.username];
-    socket.emit('updateDash');
-    socket.broadcast.emit('updateDash');
+    offlineUser();
+  })
 
+  socket.on('logout', function(){
+    offlineUser();
   })
 
 
   socket.on('matchReady', function(){
     duelSocket(roomModel, socket);
   });
+
+
+  var offlineUser = function(){
+    delete userController.currentUsers[socket.handshake.query.username];
+    socket.emit('updateDash');
+    socket.broadcast.emit('updateDash');
+
+  }
 
 
 };

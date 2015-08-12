@@ -171,10 +171,10 @@ angular.module('battlescript.services', [])
   var playerOne = window.localStorage.getItem('username');
   var socket = io('http://localhost:8000', {query: "username=" + playerOne});
 
-  var emitOnline = function(){
-    if (playerOne){
-      socket.emit('online');
-    }
+  var emitOnline = function() {
+    console.log('online')
+    socket.emit('online');
+    
   }
 
   return {
