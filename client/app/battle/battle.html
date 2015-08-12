@@ -1,0 +1,101 @@
+<div class="header-main">
+  <div class="container">
+    <div class="header-main__inner">
+      <div class="header-main__user">
+        <a href="#" class="header-main__user-details">
+          <div class="header-main__user-avatar">
+            <img src="assets/img/avatar.svg">
+          </div>
+          <h3 class="header-main__user-name">{{ playerOne }}</h3>
+        </a>
+      </div>
+      <div class="header-main__logo">
+        <a href="#/"><img src="assets/img/logo.svg" alt=""></a>
+      </div>
+      <div class="header-main__user">
+        <a href="#" class="header-main__user-details header-main__user-details--right">
+          <h3 class="header-main__user-name" ng-show="!!playerTwo">{{ playerTwo }}</h3>
+          <div class="header-main__user-avatar">
+            <img src="assets/img/avatar.svg">
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="main">
+  <div class="container">
+    <div class="battle">
+      
+      <div class="battle-waiting" ng-hide="playerOneReadyState && playerTwoReadyState">
+        <h1>Waiting for players</h1>
+        <div class="grid grid--l battle-waiting__buttons">
+          <div class="grid__item grid__item--50-l battle-waiting__opp">
+            <button ng-class="playerOneReadyClass" class="btn btn--primary btn--large btn--block" ng-click="updatePlayerOneReadyState()">{{ playerOneReadyText }}</button>
+          </div>
+          <div class="grid__item grid__item--50-l battle-waiting__opp">
+            <button ng-class="playerTwoReadyClass" class="btn btn--primary btn--large btn--block">{{ playerTwoReadyText }}</button>
+          </div>
+        </div>
+        <div class="battle-waiting__timer">
+          <p>Waiting for <span>{{ battleWaitTime | date:'m:ss' }}</span> more minutes</p>
+        </div>
+      </div><!-- /battle waiting screen -->
+
+      <div class="battle-field" ng-show="battlePromptLoaded">
+        <div class="battle-description">
+          <h1 class="battle-description__title">It's duel time!</h1>
+          <div ng-show="!!battleDescription">
+            {{ battleDescription }}
+          </div>
+        </div><!-- /battle-description -->
+        <div class="grid grid--m">
+          <div id="player1" class="grid__item grid__item--75-m">
+            <h3>{{ playerOne }}</h3>
+            <form id="player1__form" action="#" class="editor-form">
+              <div class="editor-form__field">
+                <textarea name="editor1" id="editor1" class="editor"></textarea>
+              </div>
+              <div class="editor-form__footer">
+                <button type="submit" class="btn btn--secondary btn--medium" ng-click="attemptBattle($event)">
+                  {{ playerOneButtonAttempt }}
+                </button>
+                <button type="submit" class="btn btn--primary btn--medium" ng-click="attemptBattle($event, true)">
+                  {{ playerOneButtonSubmitFinal }}
+                </button>
+              </div>
+            </form>
+            <div id="player1__notes" class="editor__notes" ng-show="!!playerOneNotes">
+              {{ playerOneNotes }}
+            </div>
+          </div><!-- /player 1 -->
+          <div id="player2" class="grid__item grid__item--25-m">
+            <h3>{{ playerTwo }}</h3>
+            <form id="player2__form" action="#" class="editor-form">
+              <div class="editor-form__field">
+                <textarea name="editor2" id="editor2" class="editor"></textarea>
+              </div>
+              <div class="editor-form__footer">
+                <button type="submit" class="btn btn--secondary btn--medium" ng-click="attemptBattle($event)">
+                  {{ playerTwoButtonAttempt }}
+                </button>
+                <button type="submit" class="btn btn--primary btn--medium" ng-click="attemptBattle($event)" disabled>
+                  {{ playerTwoButtonSubmitFinal }}
+                </button>
+              </div>
+            </form>
+            <div id="player2__notes" class="editor__notes" ng-show="!!playerTwoNotes">
+              {{ playerTwoNotes }}
+            </div>
+          </div><!-- /player 2 -->
+        </div><!-- /grid -->
+      </div><!-- battle-field -->
+
+      <div class="spinner-container" ng-show="playerOneReadyState && playerTwoReadyState && !battlePromptLoaded">
+        <div class="spinner"></div>
+      </div><!-- /loader... -->
+  
+    </div><!-- /battle -->
+  </div><!-- /container -->
+</main><!-- /main -->

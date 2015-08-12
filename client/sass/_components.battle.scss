@@ -1,0 +1,41 @@
+/* -----------------------------------------------------------------------------
+
+  BATTLE
+  
+----------------------------------------------------------------------------- */
+
+.battle-waiting {
+  text-align: center;
+}
+
+.battle-waiting__opp {
+
+}
+
+.battle-waiting__buttons {
+  margin: 48px 0;
+}
+
+.battle-waiting__timer h3 {
+  margin: 0 0 12px 0;
+}
+
+.battle-waiting__timer span {
+  color: $color--theme-orange;
+}
+
+.battle-waiting__loading {
+  font-size: $font-size--xxlarge;
+  font-weight: 700;
+  text-align: center;
+}
+
+/*  */
+
+.battle-description {
+  margin-bottom: 24px;
+}
+
+.battle-description__title {
+  margin-bottom: 4px;
+}
